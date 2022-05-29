@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "protobuf/train.proto";
+
+message Data {
+    string message = 1;
+    int32 result_number = 2;
+}
+
+message SearchBody {
+    InputData datas = 1;
+    float percent = 2;
+    bool status = 3;
+}
+
+message SearchResult {
+    StatusCode statuscode = 1000;
+    SearchBody body = 1;
+}
+
+service Search {
+    rpc Search (Data) returns (SearchResult) {};
+}
