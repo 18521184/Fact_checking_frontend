@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { list_navigation } from '@core/utils/db/links';
 import './header.css';
 import { Space140 } from '@core/components/atom/space/space';
@@ -17,7 +18,7 @@ function Navagation() {
 export default function Header() {
 
   const [open, isOpen] = useState(false);
-
+  const history = useHistory();
   useEffect(() => {
     window.onscroll = () => {
       scrollFunction();
@@ -46,7 +47,7 @@ export default function Header() {
     <div style={{position:'relative'}} className = {open? 'black' : ''}>
       <div className='header' id='header_container'>
         <div className='header__layout'>
-          <div className='layout__logo'>AICIT-19</div>
+          <div className='layout__logo' onClick={()=>history.push('/home')}>AICIT-19</div>
           <div className='layout__link'>{Navagation()}</div>
           <div className='layout__show-links'>
             <i className='bx bx-list-ul' onClick={() => {
