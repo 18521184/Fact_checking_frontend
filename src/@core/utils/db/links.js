@@ -1,14 +1,14 @@
 export const list_navigation = [
   {
-    name: 'How to use',
-    link: '#',
+    name: 'Home',
+    link: '/home',
   },
   {
-    name: 'Document',
-    link: '#',
+    name: 'Inference',
+    link: '/inference',
   },
   {
-    name: 'Github',
-    link: '#',
+    name: 'Q & A',
+    link: '/search',
   },
 ];

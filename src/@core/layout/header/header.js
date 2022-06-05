@@ -66,9 +66,9 @@ export default function Header() {
             <i className='bx bx-x' onClick={() => {isCloseNavigation();}}></i>
           </div>
           <ul className='list-links'>
-            <li><i className='bx bxs-bookmark'></i><a href="#">How to use</a></li>
-            <li><i className='bx bxs-file-doc' ></i><a href="#">Document</a></li>
-            <li><i className='bx bxl-github'></i><a href="#">Github</a></li>
+            <li onClick={()=> history.push('/home')}><a href="#">Home</a></li>
+            <li onClick={()=> history.push('/inference')}><a href="#">Inference</a></li>
+            <li onClick={()=> history.push('/search')}><a href="#">Q and A</a></li>
           </ul>
         </div>
         <div className='navigation__cancel'></div>

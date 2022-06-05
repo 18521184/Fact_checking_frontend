@@ -6,6 +6,8 @@ import Layout from '../@core/layout/layout';
 
 import Home from '@page/home/home';
 import Search from '../page/search/search';
+import Inference from '../page/search/inference';
+
 
 export default function Routes() {
   return (
@@ -17,6 +19,12 @@ export default function Routes() {
           path="/search"
           layout={Layout}
           component={Search}
+          exact
+        />
+        <RouteWithLayout
+          path="/inference"
+          layout={Layout}
+          component={Inference}
           exact
         />
       </Switch>

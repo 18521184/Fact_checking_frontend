@@ -3,15 +3,15 @@
     "eslint:recommended"
   ],
   "rules":{
-    "quotes": [2,"single",{
-      "avoidEscape": true
-      }
-    ],
-    "indent": ["error", 2],
+    // "quotes": [2,"single",{
+    //   "avoidEscape": true
+    //   }
+    // ],
+    // "indent": ["error", 2],
     "consistent-return": 2,
     "no-else-return"   : 1,
-    "semi"             : [1, "always"],
-    "space-unary-ops"  : 2,
+    // "semi"             : [1, "always"],
+    // "space-unary-ops"  : 2,
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error"
   },

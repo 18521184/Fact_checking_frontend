@@ -38,11 +38,11 @@ export default class Home extends React.Component {
                 data-aos-delay='1000'
                 data-aos-duration='700'
                 className='box-title__group-button'>
-                <div className='btn btn-documents'>
-                  <span>Documents</span> <span className='icon_arrow'><i className='bx bx-right-arrow-alt'></i></span>
+                <div className='btn btn-documents' onClick={()=> this.props.history.push('/inference')}>
+                  <span>Inference</span> <span className='icon_arrow'><i className='bx bx-right-arrow-alt'></i></span>
                 </div>
                 <div className='btn btn-tracking' onClick={()=> this.props.history.push('/search')}>
-                  <span>Lets Tracking</span>
+                  <span>Q&A</span>
                   <span className='icon_arrow'>
                     <i className='bx bx-right-arrow-alt'></i>
                   </span>
