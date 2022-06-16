@@ -171,17 +171,17 @@ export default class Inference extends React.Component {
           {text && <><div ><b>Your sentence : </b> {text}</div> <div style={{ marginTop: '16px' }}></div></>}
           {error ? <div className='search__error'><i className='bx bx-error'></i> Request server error. Please try again!</div> : <div style={{ marginTop: '16px' }}></div>}
           {data.length > 0 && <><p><b>Number of result: {data.length}</b></p>
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "50%", fontWeight: "bold" }}><div>entailment : {data.filter(item => item.label == 'entailment').length}</div><div>contradiction: {data.filter(item => item.label == 'contradiction').length}</div><div>neutral: {data.filter(item => item.label == 'neutral').length}</div></div></>}
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%", fontWeight: "bold" }}><div>support : {data.filter(item => item.label == 'support').length}</div><div>refuse: {data.filter(item => item.label == 'refuse').length}</div><div>neutral: {data.filter(item => item.label == 'neutral').length}</div></div></>}
         </div>
         {data.length > 0 && data.map(item => (<div className='search__result' key={item.sent_id}>
 
           <div className='result'>
-            <h5>Evidence: <span style={{ fontWeight: "lighter" }}>{item.hypothesis}</span></h5>
-            <p ><span style={{ fontWeight: "bold" }}>Label:</span> <span className={item.label}>{item.label}</span></p>
+            <h5>Evidence: <span style={{ fontWeight: "lighter" }}>{item.evidence}</span></h5>
+            <p ><span style={{ fontWeight: "bold" }}>Label:</span> <span className={item.label} style={{ fontWeight: "bold" }}>{item.label}</span></p>
             <p>
               <span style={{ fontWeight: "bold" }}>Inference score:</span> {item.inference_score}
             </p>
-            <div> <span style={{ fontWeight: "bold" }}>Context : </span> <span dangerouslySetInnerHTML={{ __html: item.context.content.replace(item.hypothesis, `<b>${item.hypothesis}</b>`) }}>
+            <div> <span style={{ fontWeight: "bold" }}>Context : </span> <span dangerouslySetInnerHTML={{ __html: item.context.content.replace(item.evidence, `<b>${item.evidence}</b>`) }}>
             </span></div>
           </div>
         </div>))}
