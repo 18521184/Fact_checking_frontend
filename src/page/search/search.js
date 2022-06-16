@@ -174,12 +174,13 @@ export default class Search extends React.Component {
         {data.answer && <div className='search__result'>
           <div className='result'>
             <h5>Rate the search sentence</h5>
-            <p>Your question: <span className='sentence--modifile'> {data.query} </span></p>
+            <p style={{ fontWeight: "bold" }}>Your question: <span className='sentence--modifile'> {data.query} </span></p>
             <p>
-              - Answer: {data.answer}
+              <span style={{ fontWeight: "bold" }}> - Answer: </span> {data.answer}
             </p>
             <p>
-              - Context: {data.document.content}
+            <span style={{ fontWeight: "bold" }}>- Context : </span> <span dangerouslySetInnerHTML={{ __html: data.document.content.replace(data.answer, `<b>${data.answer}</b>`) }}>
+            </span>
             </p>
           </div>
         </div>}

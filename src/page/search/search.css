@@ -221,12 +221,15 @@
 }
 .support{
     background: rgb(65, 250, 9);
+    color: rgb(255, 255, 255);
 } 
 .refuse{
     background: rgb(255, 2, 2);
+    color: rgb(255, 255, 255);
 } 
 .neutral{
     background: rgb(194, 194, 23);
+    color: rgb(255, 255, 255);
 }
 @media only screen and (max-width: 1920px) {
     .search {
