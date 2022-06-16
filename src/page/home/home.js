@@ -10,7 +10,7 @@ import { Space120 } from '@core/components/atom/space/space';
 export default class Home extends React.Component {
   componentDidMount() {
     AOS.init();
-    document.title = 'AICIT-19 | Home';
+    document.title = 'InfoCheck | Home';
   }
 
   render() {

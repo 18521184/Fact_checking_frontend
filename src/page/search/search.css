@@ -219,7 +219,15 @@
     background-color: #fbecb7;
     border-radius: 4px;
 }
-
+.entailment{
+    background: rgb(65, 250, 9);
+} 
+.contradiction{
+    background: rgb(255, 2, 2);
+} 
+.neutral{
+    background: rgb(251, 255, 3);
+}
 @media only screen and (max-width: 1920px) {
     .search {
         flex-direction: column;

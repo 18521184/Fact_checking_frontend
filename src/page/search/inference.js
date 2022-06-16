@@ -26,7 +26,7 @@ export default class Inference extends React.Component {
     AOS.init({
       once: true
     });
-    document.title = 'AICIT-19 | Search';
+    document.title = 'InfoCheck | Inference';
   }
 
   render() {
@@ -87,8 +87,7 @@ export default class Inference extends React.Component {
           className='search__title'>
           <div className='title__layout'>
             <h1 className='highlight-color'>Inference</h1>
-            <h3 className='layout__sub-title'> Computational Fact Checking for Statistical
-              <span className='highlight-color'> Covid-19 </span>Claims
+            <h3 className='layout__sub-title'> Computational Fact Checking
             </h3>
           </div>
         </div>
@@ -97,10 +96,6 @@ export default class Inference extends React.Component {
           data-aos-easing='ease-in-sine'
           data-aos-duration='600'
           className='search__description'>
-          <p className='description__layout'>
-            Verify statistical claims about the coronavirus spread and effects on
-            data from the <span className='description--modifile'>official sources</span>.
-          </p>
         </div>
         <Space40></Space40>
         <div
@@ -162,7 +157,7 @@ export default class Inference extends React.Component {
               }}
             >
               <div className='btn-search__layout'>
-                <div className='txt-search'>Tracking</div>
+                <div className='txt-search'>Checking</div>
                 {isSearch ?
                   <Spinner animation='border' role='status' size='sm' variant='light' className='spinner-custom'>
                     <span className='visually-hidden'>Loading...</span>
@@ -173,18 +168,21 @@ export default class Inference extends React.Component {
               </div>
             </button>
           </div>
-          {text&&<><div ><b>Your sentence : </b> {text}</div> <div style={{ marginTop: '16px' }}></div></>}
+          {text && <><div ><b>Your sentence : </b> {text}</div> <div style={{ marginTop: '16px' }}></div></>}
           {error ? <div className='search__error'><i className='bx bx-error'></i> Request server error. Please try again!</div> : <div style={{ marginTop: '16px' }}></div>}
+          {data.length > 0 && <><p><b>Number of result: {data.length}</b></p>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "50%", fontWeight: "bold" }}><div>entailment : {data.filter(item => item.label == 'entailment').length}</div><div>contradiction: {data.filter(item => item.label == 'contradiction').length}</div><div>neutral: {data.filter(item => item.label == 'neutral').length}</div></div></>}
         </div>
         {data.length > 0 && data.map(item => (<div className='search__result' key={item.sent_id}>
+
           <div className='result'>
-            <h5>{item.hypothesis}</h5>
-            <p className='sentence--modifile'>{item.label}</p>
-            <p className='txt-green'>
-              {item.inference_score}
+            <h5>Evidence: <span style={{ fontWeight: "lighter" }}>{item.hypothesis}</span></h5>
+            <p ><span style={{ fontWeight: "bold" }}>Label:</span> <span className={item.label}>{item.label}</span></p>
+            <p>
+              <span style={{ fontWeight: "bold" }}>Inference score:</span> {item.inference_score}
             </p>
-            <p dangerouslySetInnerHTML={{ __html: item.context.content.replace(item.hypothesis, `<b>${item.hypothesis}</b>`) }}>
-            </p>
+            <div> <span style={{ fontWeight: "bold" }}>Context : </span> <span dangerouslySetInnerHTML={{ __html: item.context.content.replace(item.hypothesis, `<b>${item.hypothesis}</b>`) }}>
+            </span></div>
           </div>
         </div>))}
         <Space60></Space60>
