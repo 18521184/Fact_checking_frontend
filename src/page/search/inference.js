@@ -120,7 +120,7 @@ export default class Inference extends React.Component {
           <div className='result'>
             <h5><span style={{ fontWeight: "bold" }}>Đánh giá đối với thông tin:</span> <span className={item.label} style={{ fontWeight: "bold" }}>{labelReplaction[item.label]}</span></h5>
             <div>
-              <span style={{ fontWeight: "bold" }}>Mức độ tin cậy của đánh giá:</span> {(item.inference_score*100).toFixed(5)}%
+              <span style={{ fontWeight: "bold" }}>Mức độ tin cậy của đánh giá:</span> {(item.inference_score*100).toFixed(3)}%
             </div>
             <div>
               <span style={{ fontWeight: "bold" }}>Đánh giá dựa trên thông tin:</span> {item.evidence}
