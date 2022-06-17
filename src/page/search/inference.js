@@ -2,11 +2,15 @@ import React from 'react';
 import './search.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-// import { search } from '@core/utils/api/api';
 import { searchInference } from '@core/utils/api/api';
 import { Space40, Space60, Space120 } from '@core/components/atom/space/space';
-// import { formatString } from '@core/utils/modules/modules';
 import { Spinner } from 'react-bootstrap';
+
+const labelReplaction= {
+  "refute":"Bác bỏ",
+  "support":"Ủng hộ",
+  "neutral":"Trung lập"
+}
 export default class Inference extends React.Component {
   constructor(props) {
     super(props);
@@ -31,53 +35,6 @@ export default class Inference extends React.Component {
 
   render() {
     const { text, data, isSearch, error } = this.state;
-
-    // const resultSearch = (data) => {
-    //   console.log(data);
-    //   if (data.answer.length === 0) {
-    //     return (
-    //       <div></div>
-    //     );
-    //   }
-    //   else if (data.length > 0) {
-    //     return (
-
-    //     );
-    //   }
-    //   return 0;
-    // };
-
-    // const listItem = (data) => {
-    //   if (data.length === 0) {
-    //     return (
-    //       <div className='no_result'>
-    //         <p className='highlight-color'>No have result, please start your search!</p>
-    //       </div>
-    //     );
-    //   } else if (data.length > 0) {
-    //     const map = data[1].map((item, index) => (
-    //       <div key={index} className='box-card'>
-    //         <div className='box-card__content'>
-    //           <h3 className='highlight-color'>
-    //             Interpretation {index + 1}
-    //           </h3>
-    //           <p> <span className='txt-title-card-result'> Title: {item['title']} </span>
-    //           </p>
-    //           <p style={{ marginTop: '8px' }}>
-    //             <span className='txt-time-search'>Time: {item['publish_time']}</span>
-    //           </p>
-    //           <p>Description: {formatString(item['description'])}</p>
-    //           <div className='content__btn-link'>
-    //             <a className='btn-link--modifile' href={`${item['link']}`}>Read more</a>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     ));
-    //     return map;
-    //   }
-    //   return 0;
-    // };
-
     return (
       <div>
         <div
@@ -87,8 +44,6 @@ export default class Inference extends React.Component {
           className='search__title'>
           <div className='title__layout'>
             <h1 className='highlight-color'>Inference</h1>
-            <h3 className='layout__sub-title'> Computational Fact Checking
-            </h3>
           </div>
         </div>
         <div
@@ -108,7 +63,7 @@ export default class Inference extends React.Component {
             <input
               className='input-search'
               id='input-search'
-              placeholder='Enter a sentence here'
+              placeholder='Nhập thông tin cần chứng thực ở đây'
               onChange={async (event) => {
                 await this.setState({ text: event.target.value });
                 if (text.length > 0) {
@@ -140,24 +95,11 @@ export default class Inference extends React.Component {
                 await this.setState({ data: res.data.data });
                 await this.setState({ isSearch: false });
                 await this.setState({ disable: true });
-                // await this.setState({ text: '' });
                 document.getElementById('input-search').value = '';
-                // await search(text, number).then(async res => {
-                //   if(!res) {
-                //     this.setState({ error: true });
-                //     this.setState({ isSearch: false });
-                //     return;
-                //   }
-                //   await this.setState({ data: res});
-                //   await this.setState({ isSearch: false });
-                //   await this.setState({ disable: true });
-                //   await this.setState({ text: '' });
-                //   document.getElementById('input-search').value = '';
-                // });
               }}
             >
               <div className='btn-search__layout'>
-                <div className='txt-search'>Checking</div>
+                <div className='txt-search'>Kiểm tra</div>
                 {isSearch ?
                   <Spinner animation='border' role='status' size='sm' variant='light' className='spinner-custom'>
                     <span className='visually-hidden'>Loading...</span>
@@ -168,20 +110,22 @@ export default class Inference extends React.Component {
               </div>
             </button>
           </div>
-          {text && <><div ><b>Your sentence : </b> {text}</div> <div style={{ marginTop: '16px' }}></div></>}
+          {text && <><div ><b>Thông tin cần kiểm tra : </b> {text}</div> <div style={{ marginTop: '16px' }}></div></>}
           {error ? <div className='search__error'><i className='bx bx-error'></i> Request server error. Please try again!</div> : <div style={{ marginTop: '16px' }}></div>}
           {data.length > 0 && <><p><b>Number of result: {data.length}</b></p>
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%", fontWeight: "bold" }}><div>support : {data.filter(item => item.label == 'support').length}</div><div>refuse: {data.filter(item => item.label == 'refuse').length}</div><div>neutral: {data.filter(item => item.label == 'neutral').length}</div></div></>}
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%", fontWeight: "bold" }}><div>Ủng hộ : {data.filter(item => item.label == 'support').length}</div><div>Bác bỏ: {data.filter(item => item.label == 'refute').length}</div><div>Trung lập: {data.filter(item => item.label == 'neutral').length}</div></div></>}
         </div>
-        {data.length > 0 && data.map(item => (<div className='search__result' key={item.sent_id}>
+        {data.length > 0 && data.sort((a,b)=>b.inference_score-a.inference_score).map(item => (<div className='search__result' key={item.sent_id}>
 
           <div className='result'>
-            <h5>Evidence: <span style={{ fontWeight: "lighter" }}>{item.evidence}</span></h5>
-            <p ><span style={{ fontWeight: "bold" }}>Label:</span> <span className={item.label} style={{ fontWeight: "bold" }}>{item.label}</span></p>
-            <p>
-              <span style={{ fontWeight: "bold" }}>Inference score:</span> {item.inference_score}
-            </p>
-            <div> <span style={{ fontWeight: "bold" }}>Context : </span> <span dangerouslySetInnerHTML={{ __html: item.context.content.replace(item.evidence, `<b>${item.evidence}</b>`) }}>
+            <h5><span style={{ fontWeight: "bold" }}>Đánh giá đối với thông tin:</span> <span className={item.label} style={{ fontWeight: "bold" }}>{labelReplaction[item.label]}</span></h5>
+            <div>
+              <span style={{ fontWeight: "bold" }}>Mức độ tin cậy của đánh giá:</span> {(item.inference_score*100).toFixed(5)}%
+            </div>
+            <div>
+              <span style={{ fontWeight: "bold" }}>Đánh giá dựa trên thông tin:</span> {item.evidence}
+            </div>
+            <div> <span style={{ fontWeight: "bold" }}>Tài liệu dựa vào : </span> <span dangerouslySetInnerHTML={{ __html: item.context.content.replace(item.evidence, `<b>${item.evidence}</b>`) }}>
             </span></div>
           </div>
         </div>))}
@@ -193,10 +137,9 @@ export default class Inference extends React.Component {
           data-aos-delay='1200'
           className='title-result'>
           <h5 className='txt-result'>
-            Fact Checking your sentence
+            Hãy bắt đầu kiểm tra chứng thực thông tin của bạn
           </h5>
           <Space40></Space40>
-          {/* <div className='layout-card'>{listItem(data)}</div> */}
         </div>
         <Space120></Space120>
       </div>

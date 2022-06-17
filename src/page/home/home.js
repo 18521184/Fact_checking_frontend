@@ -4,8 +4,8 @@ import 'aos/dist/aos.css';
 import './home.css';
 import ImageDocker from '@core/assets/images/docker-cover.png';
 import LKH from '@core/assets/images/lkh.png';
-import LTQT from '@core/assets/images/wibu.png';
-import THT from '@core/assets/images/wibu.png';
+import LTQT from '@core/assets/images/tree.jpg';
+import THT from '@core/assets/images/tree.jpg';
 import { Space120 } from '@core/components/atom/space/space';
 export default class Home extends React.Component {
   componentDidMount() {
