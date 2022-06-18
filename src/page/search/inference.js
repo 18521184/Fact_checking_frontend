@@ -110,20 +110,20 @@ export default class Inference extends React.Component {
               </div>
             </button>
           </div>
-          {text && <><div ><b>Thông tin cần kiểm tra : </b> {text}</div> <div style={{ marginTop: '16px' }}></div></>}
+          {text && <><b>Thông tin cần kiểm tra : </b><div style={{width:"53%",display:"flex",flexDirection:"row",justifyContent:"center", fontSize: "18px"}}> {text}</div> <div style={{ marginTop: '16px' }}></div></>}
           {error ? <div className='search__error'><i className='bx bx-error'></i> Request server error. Please try again!</div> : <div style={{ marginTop: '16px' }}></div>}
-          {data.length > 0 && <><p><b>Number of result: {data.length}</b></p>
-            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%", fontWeight: "bold" }}><div>Ủng hộ : {data.filter(item => item.label == 'support').length}</div><div>Bác bỏ: {data.filter(item => item.label == 'refute').length}</div><div>Trung lập: {data.filter(item => item.label == 'neutral').length}</div></div></>}
+          {data.length > 0 && <><div><b>Số lượng đánh giá: {data.length}</b></div>
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%", fontWeight: "bold" }}><div style={{color: 'rgb(44, 151, 12)', fontSize: "18px"}}>Ủng hộ : {data.filter(item => item.label == 'support').length}</div><div style={{color:'rgb(255, 2, 2)', fontSize: "18px"}}>Bác bỏ: {data.filter(item => item.label == 'refute').length}</div><div style={{color:'rgb(194, 194, 23)', fontSize: "18px"}}>Trung lập: {data.filter(item => item.label == 'neutral').length}</div></div></>}
         </div>
         {data.length > 0 && data.sort((a,b)=>b.inference_score-a.inference_score).map(item => (<div className='search__result' key={item.sent_id}>
 
           <div className='result'>
-            <h5><span style={{ fontWeight: "bold" }}>Đánh giá đối với thông tin:</span> <span className={item.label} style={{ fontWeight: "bold" }}>{labelReplaction[item.label]}</span></h5>
+            <h5><span style={{ fontWeight: "bold" }}>Kết quả đánh giá:</span> <span className={item.label} style={{ fontWeight: "bold" }}>{labelReplaction[item.label]}</span></h5>
             <div>
               <span style={{ fontWeight: "bold" }}>Mức độ tin cậy của đánh giá:</span> {(item.inference_score*100).toFixed(3)}%
             </div>
             <div>
-              <span style={{ fontWeight: "bold" }}>Đánh giá dựa trên thông tin:</span> {item.evidence}
+              <span style={{ fontWeight: "bold" }}>Minh chứng:</span> {item.evidence}
             </div>
             <div> <span style={{ fontWeight: "bold" }}>Tài liệu dựa vào : </span> <span dangerouslySetInnerHTML={{ __html: item.context.content.replace(item.evidence, `<b>${item.evidence}</b>`) }}>
             </span></div>

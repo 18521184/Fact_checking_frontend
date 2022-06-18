@@ -148,10 +148,10 @@ export default class Search extends React.Component {
             <h5>Kết quả</h5>
             <p style={{ fontWeight: "bold" }}>Câu hỏi: <span className='sentence--modifile'> {data.query} </span></p>
             <p>
-              <span style={{ fontWeight: "bold" }}> - Câu trả lời: </span> {data.answer}
+              <span style={{ fontWeight: "bold" }}> • Câu trả lời: </span> {data.answer}
             </p>
             <p>
-            <span style={{ fontWeight: "bold" }}>- Tài liệu dựa vào : </span> <span dangerouslySetInnerHTML={{ __html: data.document.content.replace(data.answer, `<b>${data.answer}</b>`) }}>
+            <span style={{ fontWeight: "bold" }}>• Tài liệu dựa vào : </span> <span dangerouslySetInnerHTML={{ __html: data.document.content.replace(data.answer, `<b>${data.answer}</b>`) }}>
             </span>
             </p>
           </div>

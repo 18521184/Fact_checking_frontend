@@ -220,16 +220,13 @@
     border-radius: 4px;
 }
 .support{
-    color: rgb(255, 255, 255);
-    background: rgb(65, 250, 9);
+    color: rgb(44, 151, 12);
 } 
 .refute{
-    color: rgb(255, 255, 255);
-    background: rgb(255, 2, 2);
+    color: rgb(255, 2, 2);
 } 
 .neutral{
-    color: rgb(255, 255, 255);
-    background: rgb(194, 194, 23);
+    color: rgb(194, 194, 23);
 }
 @media only screen and (max-width: 1920px) {
     .search {
