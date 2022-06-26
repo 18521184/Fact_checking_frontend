@@ -2,7 +2,6 @@ import React from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './home.css';
-import ImageDocker from '@core/assets/images/docker-cover.png';
 import LKH from '@core/assets/images/lkh.png';
 import LTQT from '@core/assets/images/tree.jpg';
 import THT from '@core/assets/images/tree.jpg';
@@ -25,12 +24,11 @@ export default class Home extends React.Component {
                 data-aos-duration='1000'
                 className='box-title__title'>
                 <h1>
-                  <span className='title--modifile'>Covid-19? </span>
                   <br/>
-                  But your
-                  <span className='title--modifile'> Information </span>
-                  is that
-                  <span className='title--modifile'> Trusted? </span></h1>
+                  Do you need to
+                  <span className='title--modifile'> Check your infomation </span>
+                  or
+                  <span className='title--modifile'> Q&A </span></h1>
               </div>
               <div
                 data-aos='fade-up'
@@ -47,16 +45,6 @@ export default class Home extends React.Component {
                     <i className='bx bx-right-arrow-alt'></i>
                   </span>
                 </div>
-              </div>
-            </div>
-            <div
-              data-aos='fade-right'
-              data-aos-easing='ease-in-sine'
-              data-aos-delay='200'
-              data-aos-duration='700'
-              className='header-content__image-header'>
-              <div className='image-header'>
-                <img src={ImageDocker} alt='img-cover-docker'/>
               </div>
             </div>
           </div>
@@ -110,12 +98,6 @@ export default class Home extends React.Component {
                     <img src={LTQT} alt='Le Trinh Quang Trieu'/>
                   </div>
                   <p className='card__title-name'><span className='title--modifile'>Student.</span> Nguyễn Hoàng Long</p>
-                  <div
-                    className='card__description'>
-                    <p className='description'>
-                      DevOps, Backend, Elasticsearch, Crawler data
-                    </p>
-                  </div>
                 </div>
               </div>
               <div className='members__member'>
@@ -125,12 +107,6 @@ export default class Home extends React.Component {
                     <img src={THT} alt='Le Trinh Quang Trieu'/>
                   </div>
                   <p className='card__title-name'><span className='title--modifile'>Student.</span> Trịnh Huỳnh Trọng Nhân</p>
-                  <div
-                    className='card__description'>
-                    <p className='description'>
-                      Grpc, Frontend, Elasticsearch, Crawler data
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
