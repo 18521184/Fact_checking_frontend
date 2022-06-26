@@ -39,5 +39,5 @@ export const searchAmp = async (input) => {
   return await axios.post('http://10.71.11.71:8888/api/search/answering/', input, { 'Content-Type': 'multipart/form-data' });
 };
 export const searchInference = async (input) => {
-  return await axios.post('http://10.71.11.71:8888/api/search/inference/', input, { 'Content-Type': 'multipart/form-data' });
+  return await axios.post('http://10.71.11.71:8888/api/search/relevance/', input, { 'Content-Type': 'multipart/form-data' });
 };
