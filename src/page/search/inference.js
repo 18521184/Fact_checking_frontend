@@ -115,7 +115,15 @@ export default class Inference extends React.Component {
           {data.length > 0 && <><div><b>Số lượng đánh giá: {data.length}</b></div>
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "30%", fontWeight: "bold" }}><div style={{color: 'rgb(44, 151, 12)', fontSize: "18px"}}>Ủng hộ : {data.filter(item => item.label == 'support').length}</div><div style={{color:'rgb(255, 2, 2)', fontSize: "18px"}}>Bác bỏ: {data.filter(item => item.label == 'refute').length}</div><div style={{color:'rgb(194, 194, 23)', fontSize: "18px"}}>Trung lập: {data.filter(item => item.label == 'neutral').length}</div></div></>}
         </div>
-        {data.length > 0 && data.sort((a,b)=>b.inference_score-a.inference_score).map(item => (<div className='search__result' key={item.sent_id}>
+        {data.length > 0 && data.sort((a,b)=>{
+         if(a.label[0]>b.label[0]){
+          return -1;
+         }else if(a.label[0]<b.label[0]){
+          return 1;
+         }else{
+          return 0;
+         }
+        }).map(item => (<div className='search__result' key={item.sent_id}>
 
           <div className='result'>
             <h5><span style={{ fontWeight: "bold" }}>Kết quả đánh giá:</span> <span className={item.label} style={{ fontWeight: "bold" }}>{labelReplaction[item.label]}</span></h5>
