@@ -120,9 +120,8 @@ export default class Inference extends React.Component {
           return -1;
          }else if(a.label[0]<b.label[0]){
           return 1;
-         }else{
-          return 0;
          }
+          return 0;
         }).map(item => (<div className='search__result' key={item.sent_id}>
 
           <div className='result'>
